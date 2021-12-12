@@ -4,7 +4,7 @@
 
 #ifndef CIRCUIT_SOLVER_PARSER_H
 #define CIRCUIT_SOLVER_PARSER_H
-#include "includes.h"
+#include "../includes/includes.h"
 
 using namespace std;
 
