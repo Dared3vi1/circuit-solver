@@ -13,5 +13,6 @@
 #include <iostream>
 #include <exception>
 #include <set>
+#include <filesystem>
 
 #endif //CIRCUIT_SOLVER_INCLUDES_H

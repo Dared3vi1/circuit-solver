@@ -21,11 +21,11 @@ circuit::circuit(parser *p_) :
         // Filling directed_adjacency_list
         directed_adjacency_list[tail_vertex].push_back(head_vertex);
 
-        // Filling edges ???
+        // Filling eges
         string key = make_edge_key(tail_vertex, head_vertex);
-        edges[key].push_back(edge_counter);
+        edges[edge_counter] = key;
 
-        // Filling voltage_vector
+        // Filling voltage_vector_data
         voltage_vector_data.push_back(entry.voltage);
 
         // Filling resistance vector
@@ -110,4 +110,18 @@ void circuit::solve_circuit() {
     current_vector =
             conductivity_matrix * (nat_voltage_vector + voltage_vector);
     current_vector.rename("current_vector");
+}
+
+void circuit::output_answer(ofstream &output_file) {
+    if (!output_file.is_open())
+        perror("error while opening file");
+
+    for (unsigned long i = 0; i < current_vector.size1; i++) {
+        string tmp =
+                edges[i] + ": " + to_string(current_vector.data.at(i).at(0)) +
+                " A;\n";
+        output_file << tmp;
+    }
+    if (output_file.bad())
+        perror("error while reading file");
 }

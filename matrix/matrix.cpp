@@ -36,25 +36,21 @@ matrix operator+(matrix &lhs, matrix &rhs) {
 
 matrix operator*(matrix &lhs, matrix &rhs) {
     auto result_matrix = lhs.multiply(rhs);
-    cout << "lvalue lvalue" << endl;
     return result_matrix;
 }
 
 matrix operator*(matrix &&lhs, matrix &rhs) {
     auto result_matrix = lhs.multiply(rhs);
-    cout << "rvalue lvalue" << endl;
     return result_matrix;
 }
 
 matrix operator*(matrix &&lhs, matrix &&rhs) {
     auto result_matrix = lhs.multiply(rhs);
-    cout << "rvalue rvalue" << endl;
     return result_matrix;
 }
 
 matrix operator*(matrix &lhs, matrix &&rhs) {
     auto result_matrix = lhs.multiply(rhs);
-    cout << "lvalue rvalue" << endl;
     return result_matrix;
 }
 

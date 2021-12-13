@@ -26,6 +26,8 @@ public:
 
     void solve_circuit();
 
+    void output_answer(ofstream &output_file);
+
 private:
     unsigned long number_of_vertices;
     unsigned long number_of_edges;
@@ -37,8 +39,8 @@ private:
     // Directed initial adjacency list
     map<unsigned long, vector<unsigned long>> directed_adjacency_list;
 
-    // Node to edge mapping
-    map<string, vector<unsigned long>> edges;
+    // Edge number to edge name mapping
+    map<unsigned long, string> edges;
 
     // Edge to voltage mapping
     matrix voltage_vector;
@@ -60,7 +62,6 @@ private:
 
     // Result current vector
     matrix current_vector;
-
 };
 
 
