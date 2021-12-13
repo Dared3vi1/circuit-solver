@@ -56,6 +56,5 @@ void parser::print_entry_data() const {
             cout << " " << entry.voltage << "V" << ";";
         }
         cout << endl;
-
     }
 }

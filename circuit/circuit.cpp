@@ -67,7 +67,6 @@ circuit::circuit(parser *p_) :
     incidence_data.pop_back();
     incidence_matrix = matrix(incidence_data, "incidence matrix");
 
-
     // Initializing resistance matrix and conductivity matrix
     vector<vector<double>> resistance_data;
     resistance_data.resize(number_of_edges);

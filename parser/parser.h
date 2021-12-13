@@ -17,7 +17,7 @@ struct entry_data {
 
 class parser {
 public:
-    parser(ifstream &input_file) { parse(input_file); };
+    explicit parser(ifstream &input_file) { parse(input_file); };
 
     ~parser() = default;
 
@@ -29,7 +29,6 @@ public:
 
 private:
     vector<entry_data> entries;
-
 };
 
 #endif //CIRCUIT_SOLVER_PARSER_H

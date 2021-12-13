@@ -21,7 +21,6 @@ public:
 
     matrix() = default;
 
-
     ~matrix() = default;
 
     // Methods
@@ -38,14 +37,12 @@ public:
     void addition_of_lines(unsigned int line_n1, unsigned int line_n2,
                            double coeff = 1);
 
-
     void rename(const string &name_) {
         name = name_;
     }
 
     // Operators
     matrix operator-();
-
 
     friend matrix operator+(matrix &lhs, matrix &rhs);
 
@@ -60,8 +57,11 @@ public:
 
     // Data
     string name{"noname"};
+
     vector<vector<double>> data;
+
     unsigned long size1{0};
+
     unsigned long size2{0};
 };
 
