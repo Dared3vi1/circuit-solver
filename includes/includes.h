@@ -12,5 +12,6 @@
 #include <sstream>
 #include <iostream>
 #include <exception>
+#include <set>
 
 #endif //CIRCUIT_SOLVER_INCLUDES_H

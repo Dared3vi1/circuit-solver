@@ -84,17 +84,17 @@ build CMakeFiles/circuit_solver.dir/parser/parser.cpp.o: CXX_COMPILER__circuit_s
   OBJECT_DIR = CMakeFiles/circuit_solver.dir
   OBJECT_FILE_DIR = CMakeFiles/circuit_solver.dir/parser
 
-build CMakeFiles/circuit_solver.dir/graph/graph.cpp.o: CXX_COMPILER__circuit_solver_Debug /Users/daredevil/CLionProjects/circuit_solver/graph/graph.cpp || cmake_object_order_depends_target_circuit_solver
-  DEP_FILE = CMakeFiles/circuit_solver.dir/graph/graph.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -mmacosx-version-min=11.2 -std=gnu++2a
-  OBJECT_DIR = CMakeFiles/circuit_solver.dir
-  OBJECT_FILE_DIR = CMakeFiles/circuit_solver.dir/graph
-
 build CMakeFiles/circuit_solver.dir/matrix/matrix.cpp.o: CXX_COMPILER__circuit_solver_Debug /Users/daredevil/CLionProjects/circuit_solver/matrix/matrix.cpp || cmake_object_order_depends_target_circuit_solver
   DEP_FILE = CMakeFiles/circuit_solver.dir/matrix/matrix.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -mmacosx-version-min=11.2 -std=gnu++2a
   OBJECT_DIR = CMakeFiles/circuit_solver.dir
   OBJECT_FILE_DIR = CMakeFiles/circuit_solver.dir/matrix
+
+build CMakeFiles/circuit_solver.dir/circuit/circuit.cpp.o: CXX_COMPILER__circuit_solver_Debug /Users/daredevil/CLionProjects/circuit_solver/circuit/circuit.cpp || cmake_object_order_depends_target_circuit_solver
+  DEP_FILE = CMakeFiles/circuit_solver.dir/circuit/circuit.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -mmacosx-version-min=11.2 -std=gnu++2a
+  OBJECT_DIR = CMakeFiles/circuit_solver.dir
+  OBJECT_FILE_DIR = CMakeFiles/circuit_solver.dir/circuit
 
 
 # =============================================================================
@@ -104,7 +104,7 @@ build CMakeFiles/circuit_solver.dir/matrix/matrix.cpp.o: CXX_COMPILER__circuit_s
 #############################################
 # Link the executable circuit_solver
 
-build circuit_solver: CXX_EXECUTABLE_LINKER__circuit_solver_Debug CMakeFiles/circuit_solver.dir/main.cpp.o CMakeFiles/circuit_solver.dir/parser/parser.cpp.o CMakeFiles/circuit_solver.dir/graph/graph.cpp.o CMakeFiles/circuit_solver.dir/matrix/matrix.cpp.o
+build circuit_solver: CXX_EXECUTABLE_LINKER__circuit_solver_Debug CMakeFiles/circuit_solver.dir/main.cpp.o CMakeFiles/circuit_solver.dir/parser/parser.cpp.o CMakeFiles/circuit_solver.dir/matrix/matrix.cpp.o CMakeFiles/circuit_solver.dir/circuit/circuit.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -mmacosx-version-min=11.2
   OBJECT_DIR = CMakeFiles/circuit_solver.dir
   POST_BUILD = :

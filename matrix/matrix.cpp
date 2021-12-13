@@ -4,6 +4,22 @@
 
 #include "matrix.h"
 
+// create empty matrix(size1_, size2_)
+matrix::matrix(unsigned long size1_, unsigned long size2_,
+               string name_)
+        : name{name_}, size1{size1_}, size2{size2_} {
+    data.resize(size1);
+    for (auto &line: data) {
+        line.resize(size2);
+    }
+}
+
+matrix::matrix(vector<vector<double>> &data_, string name_)
+        : name{name_}, size1{data_.size()}, size2{data_.at(0).size()} {
+    data = data_;
+}
+
+
 matrix operator+(matrix &lhs, matrix &rhs) {
     if (lhs.size1 != rhs.size1 || lhs.size2 != rhs.size2) {
         throw length_error(string(__func__) +
@@ -20,6 +36,25 @@ matrix operator+(matrix &lhs, matrix &rhs) {
 
 matrix operator*(matrix &lhs, matrix &rhs) {
     auto result_matrix = lhs.multiply(rhs);
+    cout << "lvalue lvalue" << endl;
+    return result_matrix;
+}
+
+matrix operator*(matrix &&lhs, matrix &rhs) {
+    auto result_matrix = lhs.multiply(rhs);
+    cout << "rvalue lvalue" << endl;
+    return result_matrix;
+}
+
+matrix operator*(matrix &&lhs, matrix &&rhs) {
+    auto result_matrix = lhs.multiply(rhs);
+    cout << "rvalue rvalue" << endl;
+    return result_matrix;
+}
+
+matrix operator*(matrix &lhs, matrix &&rhs) {
+    auto result_matrix = lhs.multiply(rhs);
+    cout << "lvalue rvalue" << endl;
     return result_matrix;
 }
 
@@ -34,27 +69,12 @@ matrix matrix::operator-() {
 }
 
 
-// create empty matrix(size1_, size2_)
-matrix::matrix(unsigned long size1_, unsigned long size2_,
-               string name_)
-        : name{name_}, size1{size1_}, size2{size2_} {
-    data.resize(size1);
-    for (auto &line: data) {
-        line.resize(size2);
-    }
-}
-
-matrix::matrix(vector<vector<double>> &data_, string name_)
-        : name{name_}, size1{data_.size()}, size2{data_.at(0).size()} {
-    data = data_;
-}
-
 // print_data prints the matrix's data
 void matrix::print_data() {
     cout << "Printing " << name << ":" << endl;
     for (auto &line: data) {
         for (auto &el: line) {
-            cout << setw(5) << setprecision(3) << fixed;
+            cout << setw(10) << setprecision(3) << fixed;
             cout << el << " ";
         }
         cout << endl;
@@ -84,7 +104,6 @@ matrix matrix::multiply(matrix &m) {
     }
     vector<vector<double>> result_v(size1, vector<double>(m.size2));
     matrix result_matrix(result_v);
-    result_matrix.print_data();
 
     for (int i = 0; i < result_matrix.size1; i++) {
         for (int j = 0; j < result_matrix.size2; j++) {

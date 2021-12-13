@@ -5,16 +5,22 @@
 #ifndef CIRCUIT_SOLVER_MATRIX_H
 #define CIRCUIT_SOLVER_MATRIX_H
 
+#include <utility>
+
 #include "../includes/includes.h"
 
 using namespace std;
 
 class matrix {
 public:
+    // Constructors
     matrix(unsigned long size1_, unsigned long size2_,
            string name_ = "noname");
 
     matrix(vector<vector<double>> &data_, string name_ = "noname");
+
+    matrix() = default;
+
 
     ~matrix() = default;
 
@@ -40,19 +46,23 @@ public:
     // Operators
     matrix operator-();
 
-    matrix &operator=(const matrix &) = default;
 
     friend matrix operator+(matrix &lhs, matrix &rhs);
 
     friend matrix operator*(matrix &lhs, matrix &rhs);
 
+    friend matrix operator*(matrix &&lhs, matrix &rhs);
+
+    friend matrix operator*(matrix &&lhs, matrix &&rhs);
+
+    friend matrix operator*(matrix &lhs, matrix &&rhs);
+
 
     // Data
     string name{"noname"};
     vector<vector<double>> data;
-    unsigned long size1;
-    unsigned long size2;
-
+    unsigned long size1{0};
+    unsigned long size2{0};
 };
 
 
