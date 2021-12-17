@@ -19,6 +19,8 @@ public:
 
     matrix(vector<vector<double>> &data_, string name_ = "noname");
 
+    matrix(vector<double> &data_, string name_ = "noname");
+
     matrix() = default;
 
     ~matrix() = default;
@@ -41,8 +43,25 @@ public:
         name = name_;
     }
 
+    [[nodiscard]] unsigned long get_size1() const {
+        return size1;
+    }
+
+    [[nodiscard]] unsigned long get_size2() const {
+        return size2;
+    }
+
+    vector<double> &at(unsigned long index) {
+        return data.at(index);
+    }
+
+
     // Operators
     matrix operator-();
+
+    vector<double> &operator[](unsigned long index) {
+        return data[index];
+    }
 
     friend matrix operator+(matrix &lhs, matrix &rhs);
 
@@ -55,7 +74,7 @@ public:
     friend matrix operator*(matrix &lhs, matrix &&rhs);
 
 
-    // Data
+private:
     string name{"noname"};
 
     vector<vector<double>> data;

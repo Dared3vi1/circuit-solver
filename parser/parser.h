@@ -19,9 +19,13 @@ class parser {
 public:
     explicit parser(ifstream &input_file) { parse(input_file); };
 
+    explicit parser(string &input_data) { parse(input_data); }
+
     ~parser() = default;
 
     void parse(ifstream &input_file);
+
+    void parse(string &input_data);
 
     void print_entry_data() const;
 

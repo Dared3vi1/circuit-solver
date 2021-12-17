@@ -4,10 +4,12 @@
 
 #include "matrix.h"
 
+#include <utility>
+
 // create empty matrix(size1_, size2_)
 matrix::matrix(unsigned long size1_, unsigned long size2_,
                string name_)
-        : name{name_}, size1{size1_}, size2{size2_} {
+        : name{std::move(name_)}, size1{size1_}, size2{size2_} {
     data.resize(size1);
     for (auto &line: data) {
         line.resize(size2);
@@ -15,8 +17,17 @@ matrix::matrix(unsigned long size1_, unsigned long size2_,
 }
 
 matrix::matrix(vector<vector<double>> &data_, string name_)
-        : name{name_}, size1{data_.size()}, size2{data_.at(0).size()} {
+        : name{std::move(name_)}, size1{data_.size()},
+          size2{data_.at(0).size()} {
     data = data_;
+}
+
+matrix::matrix(vector<double> &data_, string name_)
+        : name{std::move(name_)}, size1{data_.size()}, size2{1} {
+    data = vector<vector<double>>(size1, vector<double>(size2));
+    for (unsigned long i = 0; i < size1; i++) {
+        data.at(i).at(0) = data_.at(i);
+    }
 }
 
 
@@ -28,7 +39,8 @@ matrix operator+(matrix &lhs, matrix &rhs) {
     matrix result(lhs.size1, lhs.size2);
     for (unsigned long i = 0; i < lhs.size1; i++) {
         for (unsigned long j = 0; j < lhs.size2; j++) {
-            result.data[i][j] = lhs.data[i][j] + rhs.data[i][j];
+            result.data.at(i).at(j) =
+                    lhs.data.at(i).at(j) + rhs.data.at(i).at(j);
         }
     }
     return result;
@@ -58,7 +70,7 @@ matrix matrix::operator-() {
     matrix result_matrix(size1, size2);
     for (unsigned long i = 0; i < size1; i++) {
         for (unsigned long j = 0; j < size2; j++) {
-            result_matrix.data[i][j] = -data[i][j];
+            result_matrix.data.at(i).at(j) = -data.at(i).at(j);
         }
     }
     return result_matrix;
@@ -133,7 +145,7 @@ matrix matrix::inverse() {
             unsigned long k; // column swap index
             for (k = i + 1; k < size; k++) {
                 // Go to right and find the column with non zero diag el
-                if (tmp_matrix.data[i][k] != 0) {
+                if (tmp_matrix.data.at(i).at(k) != 0) {
                     break;
                 }
             }
@@ -146,14 +158,14 @@ matrix matrix::inverse() {
             identity_matrix.swap_columns(i, k);
         }
         // Make i-th diagonal element = 1
-        double divider = tmp_matrix.data[i][i];
+        double divider = tmp_matrix.data.at(i).at(i);
         for (unsigned long l = 0; l < size; l++) {
-            tmp_matrix.data[i][l] /= divider;
-            identity_matrix.data[i][l] /= divider;
+            tmp_matrix.data.at(i).at(l) /= divider;
+            identity_matrix.data.at(i).at(l) /= divider;
         }
         // Straight run
         for (auto tmp = i + 1; tmp < size; tmp++) {
-            auto coeff = -tmp_matrix.data[tmp][i];
+            auto coeff = -tmp_matrix.data.at(tmp).at(i);
             tmp_matrix.addition_of_lines(tmp, i, coeff);
             identity_matrix.addition_of_lines(tmp, i, coeff);
         }

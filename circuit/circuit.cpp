@@ -44,7 +44,7 @@ circuit::circuit(parser *p_) :
     // Initialize voltage_vector
     voltage_vector = matrix(number_of_edges, 1);
     for (unsigned long i = 0; i < number_of_edges; i++) {
-        voltage_vector.data.at(i).at(0) = voltage_vector_data.at(i);
+        voltage_vector.at(i).at(0) = voltage_vector_data.at(i);
     }
 
     // Initializing incidence data and matrix
@@ -115,9 +115,9 @@ void circuit::output_answer(ofstream &output_file) {
     if (!output_file.is_open())
         perror("error while opening file");
 
-    for (unsigned long i = 0; i < current_vector.size1; i++) {
+    for (unsigned long i = 0; i < current_vector.get_size1(); i++) {
         string tmp =
-                edges[i] + ": " + to_string(current_vector.data.at(i).at(0)) +
+                edges[i] + ": " + to_string(current_vector[i][0]) +
                 " A;\n";
         output_file << tmp;
     }

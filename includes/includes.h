@@ -14,5 +14,7 @@
 #include <exception>
 #include <set>
 #include <filesystem>
+#include <cstdio>
+
 
 #endif //CIRCUIT_SOLVER_INCLUDES_H

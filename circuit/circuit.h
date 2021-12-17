@@ -28,6 +28,9 @@ public:
 
     void output_answer(ofstream &output_file);
 
+    // Friends
+    friend class test;
+
 private:
     unsigned long number_of_vertices;
     unsigned long number_of_edges;
