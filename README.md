@@ -5,6 +5,16 @@ This is CLion version of the project
 
 Find all currents of a circuit consisting of resistors and voltage sources
 
+## Command line arguments
+`-h` : help
+
+`-t` : run tests
+
+`-o` : specify path to output file
+
+`-i` : specify path to input data file
+
+
   
 ## Input
   The electrical circuit must be represented as a list of edges, which have one of two forms:
