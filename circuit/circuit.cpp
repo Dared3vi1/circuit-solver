@@ -106,7 +106,8 @@ void circuit::solve_circuit() {
     current_vector.rename("current_vector");
 }
 
-string circuit::make_edge_key(unsigned long v1, unsigned long v2) {
+string
+circuit::make_edge_key(const unsigned long &v1, const unsigned long &v2) const {
     string key;
     key = to_string(v1) + " -- " + to_string(v2);
     return key;

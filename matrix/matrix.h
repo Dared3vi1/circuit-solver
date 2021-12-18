@@ -103,6 +103,7 @@ matrix<T>::matrix(unsigned long size1_, unsigned long size2_,
     }
 }
 
+// Create matrix from 2d vector
 template<class T>
 matrix<T>::matrix(const vector<vector<T>> &data_, string name_)
         : name{std::move(name_)}, size1{data_.size()},
@@ -110,6 +111,7 @@ matrix<T>::matrix(const vector<vector<T>> &data_, string name_)
     data = data_;
 }
 
+// Create matrix from 1d vector
 template<class T>
 matrix<T>::matrix(const vector<T> &data_, string name_)
         : name{std::move(name_)}, size1{data_.size()}, size2{1} {
@@ -221,6 +223,7 @@ matrix<T> matrix<T>::transpose() const {
     return transposed_matrix;
 }
 
+// addition_of_lines add
 template<typename T>
 void matrix<T>::addition_of_lines(const unsigned int line_n1,
                                   const unsigned int line_n2,

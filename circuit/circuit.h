@@ -21,7 +21,8 @@ public:
     ~circuit() = default;
 
     // Methods
-    static string make_edge_key(unsigned long v1, unsigned long v2);
+    [[nodiscard]] string
+    make_edge_key(const unsigned long &v1, const unsigned long &v2) const;
 
     void solve_circuit();
 
