@@ -42,7 +42,7 @@ circuit::circuit(parser *p_) :
     number_of_edges = edge_counter;
 
     // Initialize voltage_vector
-    voltage_vector = matrix(number_of_edges, 1);
+    voltage_vector = matrix<double>(number_of_edges, 1);
     for (unsigned long i = 0; i < number_of_edges; i++) {
         voltage_vector.at(i).at(0) = voltage_vector_data.at(i);
     }
@@ -89,26 +89,27 @@ circuit::circuit(parser *p_) :
     conductivity_matrix = matrix(conductivity_data, "conductivity matrix");
 }
 
-string circuit::make_edge_key(unsigned long v1, unsigned long v2) {
-    string key;
-    key = to_string(v1) + " -- " + to_string(v2);
-    return key;
-}
-
 void circuit::solve_circuit() {
     // To solve the circuit we will use the following formula:
     // Ф = (MGM^T)^(-1) * (-MGE) -- potential matrix
     // U = M^T*Ф                 -- voltages (without external) for each edge
     // I = G(U+E)                -- currents for each edge (answer)
-    matrix left_part = (incidence_matrix * conductivity_matrix *
-                        incidence_matrix.transpose()).inverse();
-    matrix right_part =
+    matrix<double> left_part = (incidence_matrix * conductivity_matrix *
+                                incidence_matrix.transpose()).inverse();
+    matrix<double> right_part =
             -incidence_matrix * conductivity_matrix * voltage_vector;
-    matrix potential_matrix = left_part * right_part;
-    matrix nat_voltage_vector = incidence_matrix.transpose() * potential_matrix;
+    matrix<double> potential_matrix = left_part * right_part;
+    matrix<double> nat_voltage_vector =
+            incidence_matrix.transpose() * potential_matrix;
     current_vector =
             conductivity_matrix * (nat_voltage_vector + voltage_vector);
     current_vector.rename("current_vector");
+}
+
+string circuit::make_edge_key(unsigned long v1, unsigned long v2) {
+    string key;
+    key = to_string(v1) + " -- " + to_string(v2);
+    return key;
 }
 
 void circuit::output_answer(ofstream &output_file) {

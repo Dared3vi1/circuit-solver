@@ -78,7 +78,7 @@ void test::fifth_test(int &test_number) {
     run_test(input_data, test_number, answer_vector);
 }
 
-matrix test::get_results(string &input_data, int &test_counter) {
+matrix<double> test::get_results(string &input_data, int &test_counter) {
     parser p(input_data);
     circuit c(&p);
     c.solve_circuit();
@@ -86,31 +86,6 @@ matrix test::get_results(string &input_data, int &test_counter) {
     return c.current_vector;
 }
 
-
-bool compare_with_answer(matrix &current_vector,
-                         vector<double> &answer_vector) {
-    for (unsigned long i = 0; i < current_vector.get_size1(); i++) {
-        if (current_vector.at(i).at(0) - answer_vector.at(i) >= 0.01)
-            return false;
-    }
-    return true;
-}
-
-void
-print_test_info(bool &passed, int &test_number, vector<double> &answer_vector,
-                matrix &current_vector) {
-    if (!passed) {
-        cout << "Test #" << test_number << " failed\n";
-        for (unsigned long i = 0; i < answer_vector.size(); i++) {
-            cout << setprecision(5);
-            cout << "[" << i << "] answer: " << current_vector.at(i).at(0)
-                 << "  || ";
-            cout << "Correct answer: " << answer_vector.at(i) << endl;
-        }
-        return;
-    }
-    cout << "Test #" << test_number << " passed\n";
-}
 
 void test::run_test(string &input_data, int &test_number,
                     vector<double> &answer_vector) {

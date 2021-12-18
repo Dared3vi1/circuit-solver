@@ -14,7 +14,6 @@ struct ioedges {
     set<unsigned int> ouput_edges;
 };
 
-
 class circuit {
 public:
     explicit circuit(parser *p_);
@@ -46,7 +45,7 @@ private:
     map<unsigned long, string> edges;
 
     // Edge to voltage mapping
-    matrix voltage_vector;
+    matrix<double> voltage_vector;
 
     // Edge to resistance mapping
     vector<double> resistance_vector;
@@ -55,16 +54,16 @@ private:
     map<unsigned int, ioedges> vertex_ioedges;
 
     // Incidence Matrix (M)
-    matrix incidence_matrix;
+    matrix<double> incidence_matrix;
 
     // Resistance matrix (R)
-    matrix resistance_matrix;
+    matrix<double> resistance_matrix;
 
     // Conductivity matrix (G = 1/R)
-    matrix conductivity_matrix;
+    matrix<double> conductivity_matrix;
 
     // Result current vector
-    matrix current_vector;
+    matrix<double> current_vector;
 };
 
 

@@ -7,4 +7,6 @@ add_executable(circuit_solver
         main.cpp
         parser/parser.cpp parser/parser.h
         matrix/matrix.cpp matrix/matrix.h
-        circuit/circuit.cpp circuit/circuit.h test/test.cpp test/test.h)
+        circuit/circuit.cpp circuit/circuit.h
+        test/test.cpp test/test.h)
+
