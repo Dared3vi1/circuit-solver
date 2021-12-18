@@ -1,5 +1,6 @@
 # Circuit solver
 
+This is CLion version of the project 
 ## Program goal
 
 Find all currents of a circuit consisting of resistors and voltage sources
